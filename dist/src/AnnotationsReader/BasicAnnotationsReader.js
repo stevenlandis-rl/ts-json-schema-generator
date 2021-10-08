@@ -29,16 +29,16 @@ class BasicAnnotationsReader {
         return Object.keys(annotations).length ? annotations : undefined;
     }
     parseJsDocTag(jsDocTag) {
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
         const text = ((_a = jsDocTag.text) !== null && _a !== void 0 ? _a : []).map((part) => part.text).join("");
         if (BasicAnnotationsReader.textTags.has(jsDocTag.name)) {
             return text;
         }
         else if (BasicAnnotationsReader.jsonTags.has(jsDocTag.name)) {
-            return this.parseJson(text);
+            return (_b = this.parseJson(text)) !== null && _b !== void 0 ? _b : text;
         }
-        else if ((_b = this.extraTags) === null || _b === void 0 ? void 0 : _b.has(jsDocTag.name)) {
-            return (_c = this.parseJson(text)) !== null && _c !== void 0 ? _c : text;
+        else if ((_c = this.extraTags) === null || _c === void 0 ? void 0 : _c.has(jsDocTag.name)) {
+            return (_d = this.parseJson(text)) !== null && _d !== void 0 ? _d : text;
         }
         else {
             return undefined;
